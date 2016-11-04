@@ -1,0 +1,13 @@
+<div class="modal-demo">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Esta seguro que desea borrar este administrador?</h3>
+        </div>
+        <div class="modal-body text center" id="modal-body">
+              <div class ="row"><b>&nbsp Email: </b>{{ ctrlmodal.email }}</div>
+              <div class="row"><b>&nbsp Nombre: </b>{{ ctrlmodal.nombre }}</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" type="button" ng-click="ctrlmodal.ok(ctrlmodal.email)">Eliminar</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrlmodal.cancel()">Cancelar</button>
+        </div>
+</div>

@@ -1,0 +1,44 @@
+<h1 class="page-header">Editar administrador</h1>
+<form name="adminForm">
+  <div class="form-group">
+    <label for="inputEmail">Email</label>
+    <input type="email" class="form-control" ng-model="adminEditarCtrl.email" value="{{adminEditarCtrl.email}}" disabled>
+  </div>
+  <div class="form-group">
+    <label for="inputNombre">Nombre</label>
+    <input type="text" class="form-control" ng-model="adminEditarCtrl.nombre" value="{{adminEditarCtrl.nombre}}" required>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input type="password" class="form-control" ng-model="adminEditarCtrl.password" value="{{adminEditarCtrl.password}}" required>
+  </div>
+  <div class ="form-group">
+    <label for="inputVerticales">Agregar Verticales</label>
+    <div class="row" style="padding-left:1.1em" ng-if="!adminEditarCtrl.loadingVerticales">
+     <select ng-init="selectedVertical = adminEditarCtrl.verticales[0]" ng-options="v.verticalTipo for v in adminEditarCtrl.verticales"
+      ng-model="selectedVertical" style='width:59%'>
+       <option value="">Selecciona una vertical</option>
+     </select>
+     <button class="btn btn-primary" ng-click="adminEditarCtrl.agregarVertical(selectedVertical)" formnovalidate>Agregar Vertical</button>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped" ng-if="!adminEditarCtrl.loadingVerticales">
+      <thead>
+        <tr>
+          <th>Tipo vertical</th>
+          <th>Nombre vertical</th>
+          <th>Quitar vertical</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="elem in adminEditarCtrl.listaVerticales">
+          <td width="45%">{{elem.verticalTipo}}</td>
+          <td width="45%">{{elem.verticalNombre}}</td>
+          <td width="10%"><a class="glyphicon glyphicon-remove" ng-click="adminEditarCtrl.quitarVertical(elem)"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="adminEditarCtrl.editar(adminEditarCtrl.nombre, adminEditarCtrl.email, adminEditarCtrl.password, adminEditarCtrl.listaVerticales)">Editar Administrador</button>
+</form>
