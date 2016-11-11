@@ -1,0 +1,14 @@
+<div class="modal-demo">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">El Servicio se ha editado con éxito</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+             <div class ="row"><b>&nbsp Nombre: </b>{{ ctrlmodaleditserviciotransporte.nombre }}</div>
+             <div class="row"><b>&nbsp Tarifa base: </b>${{ ctrlmodaleditserviciotransporte.tarifabase }}</div>
+             <div class ="row"><b>&nbsp Precio por hora: </b>${{ ctrlmodaleditserviciotransporte.precioporhora }}</div>
+             <div class="row"><b>&nbsp Precio por kilometro: </b>${{ ctrlmodaleditserviciotransporte.precioporkm }}</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ctrlmodaleditserviciotransporte.ok()">Aceptar</button>
+        </div>
+</div>

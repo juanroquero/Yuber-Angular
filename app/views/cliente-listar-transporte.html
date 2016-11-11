@@ -1,0 +1,29 @@
+<h1 class="page-header">Clientes</h1>
+  <div class="row" style="padding-left:1.1em">
+     <select ng-options="v for v in clienteListarTransporteCtrl.filters"
+      ng-model="selectedFiltro" style='width:59%'>
+       <option value="">Selecciona un criterio de ordenación</option>
+     </select>
+     <button class="btn btn-primary" ng-click="clienteListarTransporteCtrl.seleccionarFiltro(selectedFiltro)" >Ordenar</button>
+    </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Puntaje</th>
+          <th>Cantidad de servicios</th>
+        </tr>
+      </thead>
+      <tbody ng-if="!clienteListarTransporteCtrl.loading">
+        <tr ng-repeat="elem in clienteListarTransporteCtrl.lista">
+          <td width="40%">{{elem.clienteEmail}}</td>
+          <td width="40%">{{elem.clienteNombre}}</td>
+          <td width="10%">{{elem.clientePuntaje}}</td>
+          <td width="10%">{{elem.clienteInstancias}}</td>
+        </tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>

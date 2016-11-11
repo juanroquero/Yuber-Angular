@@ -8,63 +8,45 @@
  * Service in the yuberApp.
  */
 angular.module('yuberApp')
-  .factory('servicio', [ 'Restangular', '$q', function (Restangular, $q) {
+  .factory('servicio', ['$http', function ($http) {
 
-  		var servicio = {};
-  		servicio.list = function () { 
-  		//return Restangular.all().getList('servicios');
-  		var lista = [{
-						"ServicioId": "1",
-						"ServicioNombre": "Plomero",
-						"ServicioPrecioHora": "50",
-						"ServicioTarifaBase": "30"
-					}, {
-						"ServicioId": "2",
-						"ServicioNombre": "Pintor",
-						"ServicioPrecioHora": "60",
-						"ServicioTarifaBase": "45"
-					}, {
-						"ServicioId": "3",
-						"ServicioNombre": "Mecanico",
-						"ServicioPrecioHora": "70",
-						"ServicioTarifaBase": "35"
-					}]
-			   var deferred = $q.defer();
-               deferred.resolve(lista);
-               //console.log(deferred.promise);
-               return deferred.promise;
-  			}
+		var servicio = {};
 
-  			return servicio;
+    var URLserver = 'http://54.213.51.6:8080/YuberWEB/rest/';
+
+		servicio.create = function(dataservicio){
+
+          return $http({
+              url: URLserver + 'Servicios/CrearServicio',
+              method: "POST",
+              data: dataservicio,
+          });
+    } 
+
+    servicio.retrieve = function(id){
+
+      return $http.get(URLserver + 'Servicios/ObtenerServicio/' + id);
+    }
+
+    servicio.edit = function(dataservicio){
+
+          return $http({
+              url: URLserver + 'Servicios/ModificarServicio',
+              method: "POST",
+              data: dataservicio,
+          });
+    } 
+
+    servicio.delete = function(id){
+
+      return $http.get(URLserver + 'Servicios/EliminarServicio/' + id);
+    }
+
+    servicio.list = function (vertical) {
+
+       return $http.get(URLserver + 'Servicios/ObtenerServicios/' + vertical);
+    }
+
+		return servicio;
 
   }]);
-
-/*angular.module('customersApp')
-    .service('dataService', ['$http', function ($http) {
-
-        var urlBase = '/api/customers';
-
-        this.getCustomers = function () {
-            return $http.get(urlBase);
-        };
-
-        this.getCustomer = function (id) {
-            return $http.get(urlBase + '/' + id);
-        };
-
-        this.insertCustomer = function (cust) {
-            return $http.post(urlBase, cust);
-        };
-
-        this.updateCustomer = function (cust) {
-            return $http.put(urlBase + '/' + cust.ID, cust)
-        };
-
-        this.deleteCustomer = function (id) {
-            return $http.delete(urlBase + '/' + id);
-        };
-
-        this.getOrders = function (id) {
-            return $http.get(urlBase + '/' + id + '/orders');
-        };
-    }]);*/

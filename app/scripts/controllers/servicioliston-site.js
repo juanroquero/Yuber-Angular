@@ -2,35 +2,35 @@
 
 /**
  * @ngdoc function
- * @name yuberApp.controller:ServiciolisttransporteCtrl
+ * @name yuberApp.controller:ServiciolistonSiteCtrl
  * @description
- * # ServiciolisttransporteCtrl
+ * # ServiciolistonSiteCtrl
  * Controller of the yuberApp
  */
 angular.module('yuberApp')
-  .controller('ServiciolisttransporteCtrl', [ 'servicio', '$uibModal', function (servicio, $uibModal) {
-      	
+  .controller('ServiciolistonSiteCtrl', [ 'servicio', '$uibModal', function (servicio, $uibModal) {
+
   	var ctrl = this;
 
   	ctrl.loading = false;
 
-  	servicio.list('Transporte').then(function(result){
+  	servicio.list('On-Site').then(function(result){
 	   		console.log(result);
 	   		ctrl.lista = result.data;
 	   	}, function(data) {
         console.log(data);
     	})
 
-    ctrl.openModal = function (id, nombre, tarifabase, precioporhora, precioporkm){
+    ctrl.openModal = function (id, nombre, tarifabase, precioporhora){
 
   	var modalInstance = $uibModal.open({
       animation: true,
       size:'md',
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
-      templateUrl: 'views/modal-delete-servicio-transporte.html',
-      controller: 'ModalInstanceDeleteServiceTransporteCtrl',
-      controllerAs: 'ctrlmodaldeleteservice',
+      templateUrl: 'views/modal-delete-servicio-on-site.html',
+      controller: 'ModalInstanceDeleteServiceOnSiteCtrl',
+      controllerAs: 'ctrlmodaldeleteserviceon-site',
       resolve: {
       	id: function () {
           return id;
@@ -44,9 +44,6 @@ angular.module('yuberApp')
         precioporhora: function () {
           return precioporhora;
         },
-        precioporkm: function () {
-          return precioporkm;
-        }
       }
     });
 
@@ -54,7 +51,7 @@ angular.module('yuberApp')
     	ctrl.loading = true;
     	servicio.delete(id).then(function(result){
     		
-    		servicio.list('Transporte').then(function(result){
+    		servicio.list('On-Site').then(function(result){
 	   		console.log(result);
 	   		ctrl.lista = result.data;
 	   		ctrl.loading = false;
@@ -76,13 +73,12 @@ angular.module('yuberApp')
 
 }]);
 
-angular.module('yuberApp').controller('ModalInstanceDeleteServiceTransporteCtrl', function ($uibModalInstance, id, nombre, tarifabase, precioporhora, precioporkm) {
+angular.module('yuberApp').controller('ModalInstanceDeleteServiceOnSiteCtrl', function ($uibModalInstance, id, nombre, tarifabase, precioporhora) {
   var $ctrl = this;
   $ctrl.id = id;
   $ctrl.nombre = nombre;
   $ctrl.tarifabase = tarifabase;
   $ctrl.precioporhora = precioporhora;
-  $ctrl.precioporkm = precioporkm;
 
   $ctrl.ok = function (id) {
     $uibModalInstance.close(id);

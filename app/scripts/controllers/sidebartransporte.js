@@ -9,9 +9,8 @@
  */
 angular.module('yuberApp')
   .controller('SidebartransporteCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+   
+   var ctrl = this;
+
+   ctrl.navbar = 1;
   });

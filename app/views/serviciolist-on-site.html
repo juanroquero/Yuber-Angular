@@ -1,0 +1,23 @@
+<h1 class="page-header">Servicios On-Site</h1>
+  <div class="table-responsive">
+    <table class="table table-striped" ng-if="!servicioListOnSiteCtrl.loading">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th class="text-center">Tarifa Base</th>
+          <th class="text-center">Precio por hora</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="elem in servicioListOnSiteCtrl.lista">
+          <td width="40%">{{elem.servicioNombre}}</td>
+          <td width="25%" class="text-center">${{elem.servicioTarifaBase}}</td>
+          <td width="25%" class="text-center">${{elem.servicioPrecioHora}}</td>
+          <td width="5%"><a class="glyphicon glyphicon-pencil" ui-sref="initial.dashboard.on-site.servicios.editar({id: elem.servicioId})" ></a></td>
+          <td width="5%"><a class="glyphicon glyphicon-trash" ng-click="servicioListOnSiteCtrl.openModal(elem.servicioId, elem.servicioNombre, elem.servicioTarifaBase, elem.servicioPrecioHora)"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

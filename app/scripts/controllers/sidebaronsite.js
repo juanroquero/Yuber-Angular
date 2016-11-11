@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name yuberApp.controller:SidebaradminCtrl
+ * @name yuberApp.controller:SidebaronsiteCtrl
  * @description
- * # SidebaradminCtrl
+ * # SidebaronsiteCtrl
  * Controller of the yuberApp
  */
 angular.module('yuberApp')
-  .controller('SidebaradminCtrl', function () {
-   
+  .controller('SidebaronsiteCtrl', function () {
+  
    var ctrl = this;
 
    ctrl.navbar = 1;

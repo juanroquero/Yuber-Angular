@@ -1,53 +1,25 @@
-          <h1 class="page-header">Servicios</h1>
-
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Tipo servicio</th>
-                  <th>Nombre proveedor</th>
-                  <th>Apellido proveedor</th>
-                  <th>Puntaje</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Plomería</td>
-                  <td>Jorge</td>
-                  <td>Rodriguez</td>
-                  <td>4.5</td>
-                  <td><button class="btn btn-info" ui-sref="dashboard.servicio" data-toggle="modal" data-target="#myModal">Editar</button></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Carpintería</td>
-                  <td>Walter</td>
-                  <td>White</td>
-                  <td>3.7</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Mecánico</td>
-                  <td>Pablo</td>
-                  <td>Escobar</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Auto</td>
-                  <td>Choferelio</td>
-                  <td>McChofer</td>
-                  <td>4.7</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Limusina</td>
-                  <td>Limon</td>
-                  <td>Limonez</td>
-                  <td>4.1</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+<h1 class="page-header">Servicios de Transporte</h1>
+  <div class="table-responsive">
+    <table class="table table-striped" ng-if="!servicioListTransporteCtrl.loading">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th class="text-center">Tarifa Base</th>
+          <th class="text-center">Precio por hora</th>
+          <th class="text-center">Precio por kilometro</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="elem in servicioListTransporteCtrl.lista">
+          <td width="30%">{{elem.servicioNombre}}</td>
+          <td width="20%" class="text-center">${{elem.servicioTarifaBase}}</td>
+          <td width="20%" class="text-center">${{elem.servicioPrecioHora}}</td>
+          <td width="20%" class="text-center">${{elem.servicioPrecioKM}}</td>
+          <td width="5%"><a class="glyphicon glyphicon-pencil" ui-sref="initial.dashboard.transporte.servicios.editar({id: elem.servicioId})" ></a></td>
+          <td width="5%"><a class="glyphicon glyphicon-trash" ng-click="servicioListTransporteCtrl.openModal(elem.servicioId, elem.servicioNombre, elem.servicioTarifaBase, elem.servicioPrecioHora, elem.servicioPrecioKM)"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

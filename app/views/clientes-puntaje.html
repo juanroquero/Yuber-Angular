@@ -1,0 +1,21 @@
+<h1 class="page-header">Top Clientes puntaje</h1>
+  <div class="table-responsive">
+    <table class="table table-striped" ng-if="!adminListCtrl.loading">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="elem in adminListCtrl.lista">
+          <td width="45%">{{elem.administradorCorreo}}</td>
+          <td width="45%">{{elem.administradorNombre}}</td>
+          <td width="5%"><a class="glyphicon glyphicon-pencil" ui-sref="initial.dashboard.administradores.editar({email: elem.administradorCorreo})" ></a></td>
+          <td width="5%"><a class="glyphicon glyphicon-trash" ng-click="adminListCtrl.openModal(elem.administradorNombre, elem.administradorCorreo)"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

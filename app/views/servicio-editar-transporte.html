@@ -1,0 +1,21 @@
+<h1 class="page-header">Editar Servicio</h1>
+<form name="adminForm">
+  <div class="form-group">
+    <label for="inputNombre">Nombre</label>
+    <input type="text" class="form-control" ng-model="servicioTransporteEditarCtrl.nombre" value="{{servicioTransporteEditarCtrl.nombre}}" required="">
+  </div>
+  <div class="form-group">
+    <label for="inputTarifaBase">Tarifa base</label>
+    <input type="number" class="form-control" ng-model="servicioTransporteEditarCtrl.tarifabase" value="{{servicioTransporteEditarCtrl.tarifabase}}" required>
+  </div>
+  <div class="form-group">
+    <label for="inputPrecioporhora">Precio por hora</label>
+    <input type="number" class="form-control" ng-model="servicioTransporteEditarCtrl.precioporhora" value="{{servicioTransporteEditarCtrl.precioporhora}}" required>
+  </div>
+   <div class="form-group">
+    <label for="inputPrecioporkm">Precio por kilometro</label>
+    <input type="number" class="form-control" ng-model="servicioTransporteEditarCtrl.precioporkm" value="{{servicioTransporteEditarCtrl.precioporkm}}" required>
+  </div>
+  
+  <button type="submit" class="btn btn-primary" ng-click="servicioTransporteEditarCtrl.editar(servicioTransporteEditarCtrl.id, servicioTransporteEditarCtrl.nombre, servicioTransporteEditarCtrl.tarifabase, servicioTransporteEditarCtrl.precioporhora, servicioTransporteEditarCtrl.precioporkm)">Editar Servicio</button>
+</form>

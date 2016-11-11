@@ -1,0 +1,21 @@
+<h1 class="page-header">Crear Servicios de Transporte</h1>
+
+<form name="adminForm">
+  <div class="form-group">
+    <label for="inputEmail">Nombre</label>
+    <input type="text" class="form-control" ng-model="servicioTransporteCrearCtrl.nombre" placeholder="Ingrese un nombre" required style='width:60%'>
+  </div>
+  <div class="form-group">
+    <label for="inputNombre">Tarifa base</label>
+    <input type="number" class="form-control" ng-model="servicioTransporteCrearCtrl.tarifabase" placeholder="Ingrese una tarifa base" required style='width:60%'>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Precio por hora</label>
+    <input type="number" class="form-control" ng-model="servicioTransporteCrearCtrl.precioporhora" placeholder="Ingrese el precio por hora" required style='width:60%'>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Precio por kilometro</label>
+    <input type="number" class="form-control" ng-model="servicioTransporteCrearCtrl.precioporkm" placeholder="Ingrese el precio por kilometro" required style='width:60%'>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="servicioTransporteCrearCtrl.agregar(servicioTransporteCrearCtrl.nombre, servicioTransporteCrearCtrl.tarifabase, servicioTransporteCrearCtrl.precioporhora, servicioTransporteCrearCtrl.precioporkm)">Crear Servicio</button>
+</form>

@@ -1,0 +1,14 @@
+<div class="modal-demo">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Está seguro que desea borrar este servicio?</h3>
+        </div>
+        <div class="modal-body text center" id="modal-body">
+             <div class ="row"><b>&nbsp Nombre: </b>{{ ctrlmodaldeleteserviceon-site.nombre }}</div>
+             <div class="row"><b>&nbsp Tarifa base: </b>${{ ctrlmodaldeleteserviceon-site.tarifabase }}</div>
+             <div class ="row"><b>&nbsp Precio por hora: </b>${{ ctrlmodaldeleteserviceon-site.precioporhora }}</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" type="button" ng-click="ctrlmodaldeleteserviceon-site.ok(ctrlmodaldeleteserviceon-site.id)">Eliminar</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrlmodaldeleteserviceon-site.cancel()">Cancelar</button>
+        </div>
+</div>

@@ -1,10 +1,16 @@
 <div class="modal-demo">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">El administrador se ha agregado con éxito</h3>
+        <div class="modal-header" ng-hide="ctrlmodalAgregarAdmin.huboerror">
+            <h4 class="modal-title" id="modal-title">El administrador se ha agregado con éxito</h4>
         </div>
-        <div class="modal-body" id="modal-body">
+        <div class="modal-header" ng-show="ctrlmodalAgregarAdmin.huboerror">
+            <h4 class="modal-title" id="modal-title">No se pudo agregar al administrador {{ctrlmodalAgregarAdmin.nombre}} de email {{ ctrlmodalAgregarAdmin.email }}.</h4>
+        </div>
+        <div class="modal-body" id="modal-body" ng-hide="ctrlmodalAgregarAdmin.huboerror">
              <div class ="row"><b>&nbsp Email: </b>{{ ctrlmodalAgregarAdmin.email }}</div>
              <div class="row"><b>&nbsp Nombre: </b>{{ ctrlmodalAgregarAdmin.nombre }}</div>
+        </div>
+        <div class="modal-body" id="modal-body" ng-show="ctrlmodalAgregarAdmin.huboerror">
+             <div class ="row"><b>&nbsp Motivo: </b>{{ ctrlmodalAgregarAdmin.error }}</div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="ctrlmodalAgregarAdmin.ok()">Aceptar</button>

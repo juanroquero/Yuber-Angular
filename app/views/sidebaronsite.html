@@ -1,0 +1,8 @@
+<div class="col-sm-3 col-md-2 sidebar">
+  <ul class="nav nav-sidebar">
+    <li ng-class="(sidebaronsiteCtrl.navbar == 1) ? 'active' : ''" ng-click="sidebaronsiteCtrl.navbar = 1"><a ui-sref="initial.dashboard.on-site.servicios.listar">Ver Servicios</a></li>
+    <li ng-class="(sidebaronsiteCtrl.navbar == 2) ? 'active' : ''" ng-click="sidebaronsiteCtrl.navbar = 2"><a ui-sref='initial.dashboard.on-site.servicios.crear'>Crear Servicios</a></li>
+    <li ng-class="(sidebaronsiteCtrl.navbar == 3) ? 'active' : ''" ng-click="sidebaronsiteCtrl.navbar = 3"><a ui-sref='initial.dashboard.on-site.clientes'>Ver Clientes</a></li>
+    <li ng-class="(sidebaronsiteCtrl.navbar == 4) ? 'active' : ''" ng-click="sidebaronsiteCtrl.navbar = 4"><a ui-sref='initial.dashboard.on-site.proveedores'>Ver Proveedores</a></li>
+  </ul>       
+</div>

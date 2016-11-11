@@ -21,7 +21,7 @@ angular.module('yuberApp')
   ctrl.email = $stateParams.email;
 
   administrador.retrieve(ctrl.email).then(function(result){
-    console.log(result);
+      console.log(result);
    		ctrl.nombre = result.data.administradorNombre;
    		ctrl.password = result.data.administradorContraseña;
    		ctrl.listaVerticales = result.data.verticales;
@@ -30,6 +30,7 @@ angular.module('yuberApp')
       //verticales que quedan
        administrador.verticales().then(function(result){
               ctrl.verticales = result.data;
+              console.log(result);
          
               var tipoverticales = _.map(ctrl.listaVerticales, function(a){return a.verticalTipo})
               ctrl.verticales = _.reject(ctrl.verticales, function(a){
@@ -78,9 +79,7 @@ angular.module('yuberApp')
         }else{
 
             administrador.edit(nombre, email, password).then(function(result){
-    	   		console.log('exito');
-    	   }, function(data) {
-            console.log('error');
+            console.log(result);
 
             var tipoVerticalesPostEdit = _.map(ctrl.listaVerticales, function(a){return a.verticalTipo})
             var aEliminarVerticales = _.reject(ctrl.verticalesPreEdit, function(elem){
@@ -98,6 +97,8 @@ angular.module('yuberApp')
             ctrl.removeVerticalesAdmin(nombre, email, aEliminarVerticales);
 
             ctrl.openModal(nombre, email);
+            
+    	   }, function(data) {
 
         	});
         }
@@ -107,6 +108,7 @@ angular.module('yuberApp')
 
     angular.forEach(listaVerticales, function(value, key){         
         administrador.addVertical(email, value.verticalTipo).then(function(result){
+            console.log(result);
            }, function(data) {
                 console.log(data);
             });
@@ -118,6 +120,7 @@ angular.module('yuberApp')
 
     angular.forEach(listaVerticales, function(value, key){         
         administrador.removeVertical(email, value.verticalTipo).then(function(result){
+            console.log(result);
            }, function(data) {
                 console.log(data);
             });

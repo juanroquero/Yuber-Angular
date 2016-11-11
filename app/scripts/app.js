@@ -32,139 +32,236 @@ angular
             url: '/',
             views:{
               '':{templateUrl: 'views/main.html'},
-              'header@initial':{templateUrl: 'views/header.html'}
+              'header@initial':{
+                templateUrl: 'views/header.html',
+                  controller: 'HeaderCtrl',
+                  controllerAs: 'headerCtrl'
+                }
             }
         })
 
         .state('initial.login', {
+            authenticate: false,
             url: 'login',
             views:{
-              'body@initial':{templateUrl: 'views/login.html'},
+              'body@initial':{
+                templateUrl: 'views/login.html',
+                  controller: 'LoginCtrl',
+                  controllerAs: 'loginCtrl'
+              },
               //'header@initial':{templateUrl: 'views/header.html'}
             },
-            controller: 'LoginCtrl',
-            controllerAs: 'loginCtrl'
+ 
         })
 
         ///////////////////////DASHBOARD//////////////////////////////
         
         .state('initial.dashboard', {
-            url: '/dashboard',
+            url: 'dashboard',
+            abstract: true,
+            authenticate: true,
             views:{
               'body@initial':{templateUrl:'views/dashboard.html'},
             
               //'body@dashboard': {templateUrl: 'views/body.html'},
             },
-            controller:  'DashboardCtrl',
-            controllerAs: 'dashboardCtrl'
         })
 
         ///////////////////////ON-SITE//////////////////////////////
 
         .state('initial.dashboard.on-site', {
             url: '/on-site',
+            authenticate: true,
             views:{
               //'':{templateUrl:'views/dashboard.html'},
-              'sidebar': {templateUrl: 'views/sidebar.html'},
+              'sidebar': {templateUrl: 'views/sidebaronsite.html',
+                            controller:  'SidebaronsiteCtrl',
+                            controllerAs: 'sidebaronsiteCtrl'
+                        },
               'body': {template: '<div ui-view=body></div>'},
             },
-            controller:  'DashboardCtrl',
-            controllerAs: 'dashboardCtrl'
         })
 
-         .state('initial.dashboard.on-site.usuarios', {
-            url: '/usuarios',
-            views:{
-              'body@initial.dashboard.on-site': {templateUrl: 'views/usuariolist.html'},
-            },
-            controller:  'UsuariolistCtrl',
-            controllerAs: 'usuarioListCtrl'
-        })
+
+         //----------------------SERVICIOS---------------------------
 
          .state('initial.dashboard.on-site.servicios', {
-            url: '/servicios',
+            //abstract: true,
+            authenticate: true,
+            url: '/servicio-on-site',
             views:{
-              'body@initial.dashboard.on-site': {templateUrl: 'views/serviciolist.html'},
+            'body': {template: '<div ui-view=body></div>'},            
             },
-            controller:  'ServiciolistCtrl',
-            controllerAs: 'servicioListCtrl'
         })
 
-         .state('initial.dashboard.on-site.provedores', {
+         .state('initial.dashboard.on-site.servicios.listar', {
+            url: '/listar',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.on-site.servicios': {
+                templateUrl: 'views/serviciolist-on-site.html',
+                  controller:  'ServiciolistonSiteCtrl',
+                  controllerAs: 'servicioListOnSiteCtrl' 
+              },
+            },
+        })
+
+        .state('initial.dashboard.on-site.servicios.editar', {
+            url: '/editar/:id',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.on-site.servicios': 
+              {templateUrl: 'views/servicio-editar-on-site.html',
+                  controller:  'ServicioonSiteeditarCtrl',
+                  controllerAs: 'serviciOnSiteEditarCtrl' 
+              },
+            },
+        })
+
+        .state('initial.dashboard.on-site.servicios.crear', {
+            url: '/crear',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.on-site.servicios': 
+              {templateUrl: 'views/servicio-crear-on-site.html',
+                controller:  'ServicioonSitecrearCtrl',
+                controllerAs: 'servicioOnSiteCrearCtrl' 
+              },
+            },
+        })
+
+        //--------------------PROVEEDORES-----------------------------
+
+        .state('initial.dashboard.on-site.proveedores', {
             url: '/proveedores',
+            authenticate: true,
             views:{
-              'body@initial.dashboard.on-site': {templateUrl: 'views/provedorlist.html'},
+              'body@initial.dashboard.on-site': 
+              {templateUrl: 'views/proveedor-listar-on-site.html',
+                controller:  'ProveedorlistaronsiteCtrl',
+                controllerAs: 'proveedorListarOnSiteCtrl' 
+              },
             },
-            controller:  'ProvedorlistCtrl',
-            controllerAs:'provedorListCtrl'
         })
 
-         .state('initial.dashboard.on-site.usuario', {
-            url: '/usuario',
+        //--------------------CLIENTES--------------------------------
+
+        .state('initial.dashboard.on-site.clientes', {
+            url: '/clientes',
+            authenticate: true,
             views:{
-              'body@initial.dashboard.on-site': {templateUrl: 'views/usuario.html'},
+              'body@initial.dashboard.on-site': 
+              {templateUrl: 'views/cliente-listar-on-site.html',
+                controller:  'ClientelistaronsiteCtrl',
+                controllerAs: 'clienteListarOnSiteCtrl' 
+              },
             },
-            controller:  'UsuarioCtrl',
-            controllerAs:'usuarioCtrl'
         })
 
-        .state('initial.dashboard.on-site.servicio', {
-            url: '/servicio',
-            views:{
-              'body@initial.dashboard.on-site': {templateUrl: 'views/servicio.html'},
-            },
-            controller:  'ServicioCtrl',
-            controllerAs:'servicioCtrl'
-        })
-
-        /////////////////////////TRANSPORTE////////////////////////////////////////
+        /////////////////////////TRANSPORTE////////////////////////////
         
         .state('initial.dashboard.transporte', {
             url: '/transporte',
+            authenticate: true,
             views:{
               //'':{templateUrl:'views/dashboard.html'},
-              'sidebar': {templateUrl: 'views/sidebartransporte.html'},
+              'sidebar': {templateUrl: 'views/sidebartransporte.html',
+                            controller:  'SidebartransporteCtrl',
+                            controllerAs: 'sidebartransporteCtrl'
+                         },
               'body': {template: '<div ui-view=body></div>'},
             },
-            controller:  'DashboardTransporteCtrl',
-            controllerAs: 'dashboardTransporteCtrl'
         })
 
-         .state('initial.dashboard.transporte.usuarios', {
-            url: '/usuarios',
-            views:{
-              'body@initial.dashboard.transporte': {templateUrl: 'views/usuariolist-transporte.html'},
-            },
-            controller:  'UsuariolistTransporteCtrl',
-            controllerAs: 'usuarioTransporteListCtrl'
-        })
+
+         //----------------------SERVICIOS---------------------------
 
          .state('initial.dashboard.transporte.servicios', {
-            url: '/servicios',
+            abstract: true,
+            authenticate: true,
+            url: '/servicio-transporte',
             views:{
-              'body@initial.dashboard.transporte': {templateUrl: 'views/serviciolist-transporte.html'},
+            'body': {template: '<div ui-view=body></div>'},            
             },
-            controller:  'ServiciolistTransporteCtrl',
-            controllerAs: 'servicioTransporteListCtrl' 
         })
 
-         .state('initial.dashboard.transporte.provedores', {
+         .state('initial.dashboard.transporte.servicios.listar', {
+            url: '/listar',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.transporte.servicios': {
+                templateUrl: 'views/serviciolist-transporte.html',
+                  controller:  'ServiciolisttransporteCtrl',
+                  controllerAs: 'servicioListTransporteCtrl' 
+              },
+            },
+        })
+
+        .state('initial.dashboard.transporte.servicios.editar', {
+            url: '/editar/:id',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.transporte.servicios': 
+              {templateUrl: 'views/servicio-editar-transporte.html',
+                  controller:  'ServiciotransporteeditarCtrl',
+                  controllerAs: 'servicioTransporteEditarCtrl' 
+              },
+            },
+        })
+
+        .state('initial.dashboard.transporte.servicios.crear', {
+            url: '/crear',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.transporte.servicios': 
+              {templateUrl: 'views/servicio-crear-transporte.html',
+                controller:  'ServiciotransportecrearCtrl',
+                controllerAs: 'servicioTransporteCrearCtrl' 
+              },
+            },
+        })
+
+        //--------------------PROVEEDORES-----------------------------
+
+        .state('initial.dashboard.transporte.proveedores', {
             url: '/proveedores',
+            authenticate: true,
             views:{
-              'body@initial.dashboard.transporte': {templateUrl: 'views/provedorlist-transporte.html'},
+              'body@initial.dashboard.transporte': 
+              {templateUrl: 'views/proveedor-listar-transporte.html',
+                controller:  'ProveedorlistartransporteCtrl',
+                controllerAs: 'proveedorListarTransporteCtrl' 
+              },
             },
-            controller:  'ProvedorlistTransporteCtrl',
-            controllerAs: 'provedorTransporteListCtrl'
         })
 
+        //--------------------CLIENTES--------------------------------
+
+        .state('initial.dashboard.transporte.clientes', {
+            url: '/clientes',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.transporte': 
+              {templateUrl: 'views/cliente-listar-transporte.html',
+                controller:  'ClientelistartransporteCtrl',
+                controllerAs: 'clienteListarTransporteCtrl' 
+              },
+            },
+        })
 
          /////////////////////////ADMINISTRADORES///////////////////////////////////
         
         .state('initial.dashboard.administradores', {
             url: '/administradores',
+            authenticate: true,
             views:{
               //'':{templateUrl:'views/dashboard.html'},
-              'sidebar': {templateUrl: 'views/sidebaradmin.html'},
+              'sidebar': {
+                templateUrl: 'views/sidebaradmin.html',
+                  controller:  'SidebaradminCtrl',
+                  controllerAs: 'sidebaradminCtrl'
+                },
+
               'body': {template: '<div ui-view=body></div>'},
             },
             controller:  'DashboardAdminCtrl',
@@ -173,6 +270,7 @@ angular
 
          .state('initial.dashboard.administradores.crear', {
             url: '/crear',
+            authenticate: true,
             views:{
               'body@initial.dashboard.administradores': 
               {templateUrl: 'views/crear-admin.html',
@@ -183,6 +281,7 @@ angular
 
          .state('initial.dashboard.administradores.listar', {
             url: '/listar',
+            authenticate: true,
             views:{
               'body@initial.dashboard.administradores': 
               {templateUrl: 'views/admin-list.html',
@@ -193,10 +292,23 @@ angular
 
          .state('initial.dashboard.administradores.editar', {
             url: '/editar/:email',
+            authenticate: true,
             views:{
               'body@initial.dashboard.administradores': 
               {templateUrl: 'views/admin-editar.html',
                 controller:  'AdmineditarCtrl as adminEditarCtrl',
+              },
+            },
+        })
+
+        //--------------ESTADO PROVICIONAL POR SI NO TIENE PERMISO DE NADA---------------
+
+        .state('initial.provicional', {
+            url: '/sin-permisos',
+            authenticate: true,
+            views:{
+              'body@initial': 
+              {templateUrl: 'views/sin-permisos.html',
               },
             },
         });
@@ -207,3 +319,76 @@ angular
         $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
 
 }])
+
+.run(function ($rootScope, $state, auth) {
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    console.log(toState);
+    console.log(auth.isAuthenticated());
+    ////PREVENIR IR A ESTADOS QUE NECESITAN LOGIN SIN ESTAR LOGUEADO////
+    if (toState.authenticate && !auth.isAuthenticated()){
+      console.log('aca');
+      // User isn’t authenticated
+      event.preventDefault();
+      $state.go("initial.login");
+    }
+    ////PREVENIR IR AL LOGIN ESTANDO LOGUEADO////
+    if (toState.name == 'initial.login' && auth.isAuthenticated()){
+        console.log(toState);
+        if ($rootScope.superAdmin){
+          event.preventDefault();
+          $state.transitionTo('initial.dashboard.administradores.listar');
+        } else if ($rootScope.transporte){
+          event.preventDefault();
+          $state.transitionTo('initial.dashboard.transporte.servicios.listar');
+        } else if ($rootScope.onsite){
+          event.preventDefault();
+          $state.transitionTo('initial.dashboard.on-site.servicios.listar');
+        } else {
+          event.preventDefault();
+          $state.transitionTo('initial.provicional');
+        }
+    }
+    ////PREVENIR VER ADMINS SIN TENER PERMISO DE SUPERADMIN////
+    if (toState.name.startsWith('initial.dashboard.administradores') && auth.isAuthenticated()){
+        console.log(toState);
+        if (!$rootScope.superAdmin){
+          event.preventDefault();
+           if ($rootScope.transporte){
+            $state.transitionTo('initial.dashboard.transporte.servicios.listar');
+          } else if ($rootScope.onsite){
+            $state.transitionTo('initial.dashboard.on-site.servicios.listar');
+          } else {
+            $state.transitionTo('initial.provicional');
+          }
+        }
+    }
+    ////PREVENIR VER TRANSPORTE SIN TENER PERMISO////
+    if (toState.name.startsWith('initial.dashboard.transporte') && auth.isAuthenticated()){
+        console.log(toState);
+        if (!$rootScope.transporte){
+          event.preventDefault();
+           if ($rootScope.superAdmin){
+            $state.transitionTo('initial.dashboard.administradores.listar');
+          } else if ($rootScope.onsite){
+            $state.transitionTo('initial.dashboard.on-site.servicios.listar');
+          } else {
+            $state.transitionTo('initial.provicional');
+          }
+      }
+    }
+    ////PREVENIR VER ON-SITE SIN TENER PERMISO////
+    if (toState.name.startsWith('initial.dashboard.on-site') && auth.isAuthenticated()){
+        console.log(toState);
+        if (!$rootScope.transporte){
+          event.preventDefault();
+           if ($rootScope.superAdmin){
+            $state.transitionTo('initial.dashboard.administradores.listar');
+          } else if ($rootScope.transporte){
+            $state.transitionTo('initial.dashboard.transporte.servicios.listar');
+          } else {
+            $state.transitionTo('initial.provicional');
+          }
+      }
+    }
+  });
+});

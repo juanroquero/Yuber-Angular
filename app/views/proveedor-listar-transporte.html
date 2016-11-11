@@ -1,0 +1,29 @@
+<h1 class="page-header">Proveedores</h1>
+  <div class="row" style="padding-left:1.1em">
+     <select ng-options="v for v in proveedorListarTransporteCtrl.filters"
+      ng-model="selectedFiltro" style='width:59%'>
+       <option value="">Selecciona un criterio de ordenación</option>
+     </select>
+     <button class="btn btn-primary" ng-click="proveedorListarTransporteCtrl.seleccionarFiltro(selectedFiltro)" >Ordenar</button>
+    </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Puntaje</th>
+          <th>Ganancia</th>
+        </tr>
+      </thead>
+      <tbody ng-if="!proveedorListarTransporteCtrl.loading">
+        <tr ng-repeat="elem in proveedorListarTransporteCtrl.lista">
+          <td width="40%">{{elem.proveedorEmail}}</td>
+          <td width="40%">{{elem.proveedorNombre}}</td>
+          <td width="10%">{{elem.proveedorPuntaje}}</td>
+          <td width="10%">{{elem.proveedorGanancia}}</td>
+        </tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -12,6 +12,8 @@ angular.module('yuberApp')
 
     var ctrl = this;
 
+    ctrl.huboerror = false;
+
     administrador.verticales().then(function(result){
                 ctrl.verticales = result.data;
                 console.log(ctrl.verticales);
@@ -59,15 +61,23 @@ angular.module('yuberApp')
         }else{
 
             administrador.create(nombre, email, password).then(function(result){
+              
+              console.log(result);
 
+              if(result.data.EXITO){
+                  if (_.isEmpty(listaVerticales)) {
+                      ctrl.openModal(nombre, email);
+                  }else{
+                      ctrl.addVerticalesAdmin(nombre, email, listaVerticales);
+                  }
+              }else{
+                ctrl.huboerror = true;
+                ctrl.error = result.data.ERROR;
+                ctrl.openModal(nombre, email, ctrl.huboerror, ctrl.error);
+              }
+            
     	   }, function(data) {
         
-            if (_.isEmpty(listaVerticales)) {
-                ctrl.openModal(nombre, email);
-            }else{
-                ctrl.addVerticalesAdmin(nombre, email, listaVerticales);
-            }
-            
                 console.log(data);
         	});
         }
@@ -79,16 +89,17 @@ angular.module('yuberApp')
         console.log(email);
         console.log(value.verticalTipo);
         administrador.addVertical(email, value.verticalTipo).then(function(result){
-           }, function(data) {
+                console.log(result);
+         }, function(data) {
                 console.log(data);
             });
         });
-        ctrl.openModal(nombre, email);
+        ctrl.openModal(nombre, email, ctrl.huboerror, ctrl.error);
 
     }
    
 
-    ctrl.openModal = function (nombre, email){
+    ctrl.openModal = function (nombre, email, huboerror, error){
 
     var modalInstance = $uibModal.open({
       animation: true,
@@ -104,11 +115,17 @@ angular.module('yuberApp')
         },
         email: function () {
           return email;
+        },
+        huboerror: function () {
+            return huboerror;
+        },
+        error: function () {
+          return error;
         }
       }
     });
 
-    modalInstance.result.then(function (nombre, email) {
+    modalInstance.result.then(function (nombre, email, huboerror, error) {
         ctrl.loading = true;
     }, function () {
  
@@ -116,10 +133,12 @@ angular.module('yuberApp')
   };
   }]);
 
-angular.module('yuberApp').controller('ModalInstanceAgregarAdminCtrl', function ($uibModalInstance, nombre, email) {
+angular.module('yuberApp').controller('ModalInstanceAgregarAdminCtrl', function ($uibModalInstance, nombre, email, huboerror, error) {
   var $ctrl = this;
   $ctrl.nombre = nombre;
   $ctrl.email = email;
+  $ctrl.huboerror = huboerror;
+  $ctrl.error = error;
 
   $ctrl.ok = function () {
     $uibModalInstance.close();

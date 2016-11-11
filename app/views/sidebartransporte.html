@@ -1,20 +1,8 @@
 <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a ui-sref="initial.dashboard.transporte.usuarios">Usuarios <span class="sr-only">(current)</span></a></li>
-            <li><a ui-sref='initial.dashboard.transporte.servicios'>Servicios</a></li>
-            <li><a ui-sref="initial.dashboard.transporte.provedores">Provedores</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
+  <ul class="nav nav-sidebar">
+    <li ng-class="(sidebartransporteCtrl.navbar == 1) ? 'active' : ''" ng-click="sidebartransporteCtrl.navbar = 1"><a ui-sref="initial.dashboard.transporte.servicios.listar">Ver Servicios</a></li>
+    <li ng-class="(sidebartransporteCtrl.navbar == 2) ? 'active' : ''" ng-click="sidebartransporteCtrl.navbar = 2"><a ui-sref='initial.dashboard.transporte.servicios.crear'>Crear Servicios</a></li>
+    <li ng-class="(sidebartransporteCtrl.navbar == 3) ? 'active' : ''" ng-click="sidebartransporteCtrl.navbar = 3"><a ui-sref='initial.dashboard.transporte.clientes'>Ver Clientes</a></li>
+    <li ng-class="(sidebartransporteCtrl.navbar == 4) ? 'active' : ''" ng-click="sidebartransporteCtrl.navbar = 4"><a ui-sref='initial.dashboard.transporte.proveedores'>Ver Proveedores</a></li>
+  </ul>
 </div>
