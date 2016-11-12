@@ -322,8 +322,6 @@ angular
 
 .run(function ($rootScope, $state, auth) {
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-    console.log(toState);
-    console.log(auth.isAuthenticated());
     ////PREVENIR IR A ESTADOS QUE NECESITAN LOGIN SIN ESTAR LOGUEADO////
     if (toState.authenticate && !auth.isAuthenticated()){
       console.log('aca');

@@ -9,6 +9,8 @@
 
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-war');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -30,6 +32,29 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
+
+
+    war: {
+        target: {
+          options: {
+            war_dist_folder: '<%= yeoman.dist %>', //Where you have your yeoman build files
+            war_verbose: true,
+            war_name: 'yuberApp', //the name of your war
+            webxml_welcome: 'index.html',
+            webxml_display_name: 'Yuber admin',
+            webxml_mime_mapping: [ //some settings that you want to appear in your web.xml file
+        ]
+          },
+          files: [
+            {
+              expand: true,
+              cwd: '<%= yeoman.dist %>', //Where you have your yeoman build files
+              src: ['**'],
+              dest: '.'
+            }
+          ]
+        }
+      },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
