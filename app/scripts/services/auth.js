@@ -24,7 +24,6 @@ angular.module('yuberApp')
 
   	auth.logout = function(datausuario){
 
-  		console.log(datausuario);
   		return $http({
               url: 'http://54.213.51.6:8080/YuberWEB/rest/Admin/Logout',
               method: "POST",
@@ -44,6 +43,52 @@ angular.module('yuberApp')
   		return $rootScope.sesion;
   	}
 
+    auth.isAdministrador = function(){
+      var userObj = $cookieStore.get('userObj');
+      if (userObj){
+        if (userObj.administrador)
+            $rootScope.administrador = true;
+        else
+            $rootScope.administrador = false;
+
+      return $rootScope.administrador;
+      }
+       else{
+        return false;
+      } 
+    }
+
+    auth.isTransporte = function(){
+      var userObj = $cookieStore.get('userObj');
+
+      if (userObj){
+        if (userObj.transporte)
+            $rootScope.transporte = true;
+        else
+            $rootScope.transporte = false;
+
+      return $rootScope.transporte;
+      }
+      else{
+        return false;
+      }  
+    }
+
+    auth.isOnSite = function(){
+      var userObj = $cookieStore.get('userObj');
+
+      if (userObj){
+        if (userObj.onsite)
+            $rootScope.onsite = true;
+        else
+            $rootScope.onsite = false;
+
+        return $rootScope.onsite;
+      } else {
+        return false;
+      }
+        
+    }
 
     auth.setAccessToken = function(authToken) {
         $cookieStore.put('accessToken', authToken);
@@ -64,6 +109,7 @@ angular.module('yuberApp')
     };
 
     auth.setUserObj = function (userObj) {
+        console.log(userObj);
         $cookieStore.put('userObj',userObj);
     };
 

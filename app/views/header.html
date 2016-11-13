@@ -11,10 +11,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a ui-sref="initial.dashboard.administradores.listar" ng-class="(navbar == 1) ? 'active' : ''" ng-click="navbar = 1" ng-show="superAdmin && sesion">Administradores</a></li>
+            <li><a ui-sref="initial.dashboard.administradores.listar" ng-class="(navbar == 1) ? 'active' : ''" ng-click="navbar = 1" ng-show="administrador && sesion">Administradores</a></li>
             <li><a ui-sref="initial.dashboard.transporte.servicios.listar" ng-class="(navbar == 2) ? 'active' : ''"  ng-click="navbar = 2" ng-show="transporte && sesion">Vertical Transporte</a></li>
             <li><a ui-sref="initial.dashboard.on-site.servicios.listar" ng-class="(navbar == 3) ? 'active' : ''" ng-click="navbar = 3" ng-show="onsite && sesion">Vertical On-Site</a></li>
-            <li><a ng-show="sesion" ng-click="headerCtrl.logout()" style="cursor:pointer;">Logout</a></li>
+            <li><a ng-show="sesion" ng-click="headerCtrl.logout()" style="cursor:pointer;">Log Out</a></li>
           </ul>
           <!--<form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">

@@ -74,7 +74,7 @@ angular.module('yuberApp')
       defer.resolve(list);
       return defer.promise;*/
 
-      return $http.get(URLserver + 'Admin/TopClientesPorPuntaje/' + '100,Transporte');
+      return $http.get(URLserver + 'Admin/TopClientesPorCantServicios/' + '100,Transporte');
     }
 
     administrador.topClientesPorCantidadInstanciasOnSite = function(limit){
@@ -86,7 +86,7 @@ angular.module('yuberApp')
       defer.resolve(list);
       return defer.promise;*/
 
-      return $http.get(URLserver + 'Admin/TopClientesPorPuntaje/' + '100,On-Site');
+      return $http.get(URLserver + 'Admin/TopClientesCantServicios/' + '100,On-Site');
     }
 
     administrador.topClientesPorPuntajeTransporte = function(limit){

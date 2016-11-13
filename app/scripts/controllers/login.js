@@ -61,6 +61,15 @@ angular.module('yuberApp')
 			   	 	$rootScope.transporte = ('Transporte' == _.find(verticalesTipo, function(elem){return elem == "Transporte"}));
 			   	 	$rootScope.onsite = ('On-Site' == _.find(verticalesTipo, function(elem){return elem == "On-Site"})); 
 
+                    var userObj = {
+                        "email":admin.data.administradorCorreo,
+                        "administrador": $rootScope.superAdmin,
+                        "transporte": $rootScope.transporte,
+                        "onsite": $rootScope.onsite,
+                    }
+
+                    auth.setUserObj(userObj);
+
 			   	 	if ($rootScope.superAdmin){
 			   	 		$state.go('initial.dashboard.administradores.listar');
 			   	 	} else if ($rootScope.transporte){

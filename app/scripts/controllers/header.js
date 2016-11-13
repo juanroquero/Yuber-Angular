@@ -14,8 +14,6 @@ angular.module('yuberApp')
 
   	var user = auth.getUserObj();
 
-   	console.log(user);
-
    	$rootScope.superAdmin = (user !== undefined)
 
    	$rootScope.transporte = (user !== undefined)
@@ -31,7 +29,7 @@ angular.module('yuberApp')
    	ctrl.sesion = (user !== undefined);
 
    	var datausuario = {
-        						"correo": user.correo,
+        						"correo": user.email,
         						"password": "basura",
         						"deviceId":"050505050"
         	}

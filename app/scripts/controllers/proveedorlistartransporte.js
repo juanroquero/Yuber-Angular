@@ -18,7 +18,7 @@ angular.module('yuberApp')
    
   	administrador.topProveedoresPorPuntajeTransporte().then(function(result){
   		console.log(result);
-  		ctrl.puntaje = result;
+  		ctrl.puntaje = result.data;
 
   	}, function(data){
 
@@ -27,7 +27,7 @@ angular.module('yuberApp')
 
   	administrador.topProveedoresPorGananciaTransporte().then(function(result){
   		console.log(result);
-  		ctrl.ganancia = result;
+  		ctrl.ganancia = result.data;
 
   	}, function(data){
 

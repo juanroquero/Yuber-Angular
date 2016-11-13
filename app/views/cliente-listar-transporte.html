@@ -12,16 +12,18 @@
         <tr>
           <th>Email</th>
           <th>Nombre</th>
+          <th>Apellido</th>
           <th>Puntaje</th>
           <th>Cantidad de servicios</th>
         </tr>
       </thead>
       <tbody ng-if="!clienteListarTransporteCtrl.loading">
         <tr ng-repeat="elem in clienteListarTransporteCtrl.lista">
-          <td width="40%">{{elem.clienteEmail}}</td>
-          <td width="40%">{{elem.clienteNombre}}</td>
-          <td width="10%">{{elem.clientePuntaje}}</td>
-          <td width="10%">{{elem.clienteInstancias}}</td>
+          <td width="25%">{{elem.cliente.usuarioCorreo}}</td>
+          <td width="25%">{{elem.cliente.usuarioNombre}}</td>
+          <td width="25%">{{elem.cliente.usuarioApellido}}</td>
+          <td width="10%">{{elem.cliente.usuarioPromedioPuntaje}}</td>
+          <td width="10%">{{elem.cantServicios}}</td>
         </tr>
         </tr>
       </tbody>

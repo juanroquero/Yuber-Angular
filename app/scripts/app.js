@@ -324,7 +324,6 @@ angular
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
     ////PREVENIR IR A ESTADOS QUE NECESITAN LOGIN SIN ESTAR LOGUEADO////
     if (toState.authenticate && !auth.isAuthenticated()){
-      console.log('aca');
       // User isn’t authenticated
       event.preventDefault();
       $state.go("initial.login");
@@ -332,13 +331,13 @@ angular
     ////PREVENIR IR AL LOGIN ESTANDO LOGUEADO////
     if (toState.name == 'initial.login' && auth.isAuthenticated()){
         console.log(toState);
-        if ($rootScope.superAdmin){
+        if (auth.isAdministrador()){
           event.preventDefault();
           $state.transitionTo('initial.dashboard.administradores.listar');
         } else if ($rootScope.transporte){
           event.preventDefault();
           $state.transitionTo('initial.dashboard.transporte.servicios.listar');
-        } else if ($rootScope.onsite){
+        } else if (auth.isOnSite()){
           event.preventDefault();
           $state.transitionTo('initial.dashboard.on-site.servicios.listar');
         } else {
@@ -349,11 +348,11 @@ angular
     ////PREVENIR VER ADMINS SIN TENER PERMISO DE SUPERADMIN////
     if (toState.name.startsWith('initial.dashboard.administradores') && auth.isAuthenticated()){
         console.log(toState);
-        if (!$rootScope.superAdmin){
+        if (!auth.isAdministrador()){
           event.preventDefault();
-           if ($rootScope.transporte){
+           if (auth.isTransporte()){
             $state.transitionTo('initial.dashboard.transporte.servicios.listar');
-          } else if ($rootScope.onsite){
+          } else if (auth.isOnSite()){
             $state.transitionTo('initial.dashboard.on-site.servicios.listar');
           } else {
             $state.transitionTo('initial.provicional');
@@ -363,11 +362,11 @@ angular
     ////PREVENIR VER TRANSPORTE SIN TENER PERMISO////
     if (toState.name.startsWith('initial.dashboard.transporte') && auth.isAuthenticated()){
         console.log(toState);
-        if (!$rootScope.transporte){
+        if (!auth.isTransporte()){
           event.preventDefault();
-           if ($rootScope.superAdmin){
+           if (auth.isAdministrador()){
             $state.transitionTo('initial.dashboard.administradores.listar');
-          } else if ($rootScope.onsite){
+          } else if (auth.isOnSite()){
             $state.transitionTo('initial.dashboard.on-site.servicios.listar');
           } else {
             $state.transitionTo('initial.provicional');
@@ -377,11 +376,11 @@ angular
     ////PREVENIR VER ON-SITE SIN TENER PERMISO////
     if (toState.name.startsWith('initial.dashboard.on-site') && auth.isAuthenticated()){
         console.log(toState);
-        if (!$rootScope.transporte){
+        if (!auth.isTransporte()){
           event.preventDefault();
-           if ($rootScope.superAdmin){
+           if (auth.isAdministrador()){
             $state.transitionTo('initial.dashboard.administradores.listar');
-          } else if ($rootScope.transporte){
+          } else if (auth.isTransporte()){
             $state.transitionTo('initial.dashboard.transporte.servicios.listar');
           } else {
             $state.transitionTo('initial.provicional');
