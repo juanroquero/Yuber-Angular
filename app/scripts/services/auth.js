@@ -12,10 +12,12 @@ angular.module('yuberApp')
 
   	var auth = {};
 
+    var URLserver = 'http://54.203.12.195:8080/YuberWEB/rest/';
+
   	auth.login = function(datausuario){
 
   		return $http({
-              url: 'http://54.213.51.6:8080/YuberWEB/rest/Admin/Login',
+              url: URLserver + 'Admin/Login',
               method: "POST",
               data: datausuario,
           });
@@ -25,7 +27,7 @@ angular.module('yuberApp')
   	auth.logout = function(datausuario){
 
   		return $http({
-              url: 'http://54.213.51.6:8080/YuberWEB/rest/Admin/Logout',
+              url: URLserver + 'Admin/Logout',
               method: "POST",
               data: datausuario,
           });
@@ -109,7 +111,6 @@ angular.module('yuberApp')
     };
 
     auth.setUserObj = function (userObj) {
-        console.log(userObj);
         $cookieStore.put('userObj',userObj);
     };
 

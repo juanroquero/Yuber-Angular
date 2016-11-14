@@ -21,7 +21,6 @@ angular.module('yuberApp')
 
   	}, function(data){
 
-  		console.log(data);
   	});
 
   	administrador.topProveedoresPorGananciaOnSite().then(function(result){
@@ -29,7 +28,6 @@ angular.module('yuberApp')
 
   	}, function(data){
 
-  		console.log(data);
   	});
 
   	ctrl.seleccionarFiltro = function(filtro){

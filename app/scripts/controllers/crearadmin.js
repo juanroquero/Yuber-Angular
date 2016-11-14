@@ -16,9 +16,7 @@ angular.module('yuberApp')
 
     administrador.verticales().then(function(result){
                 ctrl.verticales = result.data;
-                console.log(ctrl.verticales);
            }, function(data) {
-                console.log(data);
             });
     
     ctrl.selectedVertical;
@@ -28,7 +26,6 @@ angular.module('yuberApp')
     ctrl.listaVerticales = [];
 
     ctrl.agregarVertical = function(vertical){
-        console.log(vertical);
         if (vertical == undefined){
             return
         }else{
@@ -48,7 +45,6 @@ angular.module('yuberApp')
     
     ctrl.agregar = function(nombre, email, password, listaVerticales){
 
-        console.log(ctrl.listaVerticales);
 
         if (nombre == undefined){
             return
@@ -62,7 +58,6 @@ angular.module('yuberApp')
 
             administrador.create(nombre, email, password).then(function(result){
               
-              console.log(result);
 
               if(result.data.EXITO){
                   if (_.isEmpty(listaVerticales)) {
@@ -78,7 +73,6 @@ angular.module('yuberApp')
             
     	   }, function(data) {
         
-                console.log(data);
         	});
         }
     }
@@ -86,12 +80,9 @@ angular.module('yuberApp')
     ctrl.addVerticalesAdmin = function(nombre, email, listaVerticales){
 
     angular.forEach(listaVerticales, function(value, key){         
-        console.log(email);
-        console.log(value.verticalTipo);
+
         administrador.addVertical(email, value.verticalTipo).then(function(result){
-                console.log(result);
          }, function(data) {
-                console.log(data);
             });
         });
         ctrl.openModal(nombre, email, ctrl.huboerror, ctrl.error);
@@ -133,7 +124,7 @@ angular.module('yuberApp')
   };
   }]);
 
-angular.module('yuberApp').controller('ModalInstanceAgregarAdminCtrl', function ($uibModalInstance, nombre, email, huboerror, error) {
+angular.module('yuberApp').controller('ModalInstanceAgregarAdminCtrl', function ($uibModalInstance, $state, nombre, email, huboerror, error) {
   var $ctrl = this;
   $ctrl.nombre = nombre;
   $ctrl.email = email;
@@ -142,6 +133,7 @@ angular.module('yuberApp').controller('ModalInstanceAgregarAdminCtrl', function 
 
   $ctrl.ok = function () {
     $uibModalInstance.close();
+    $state.go('initial.dashboard.administradores.listar');  
   };
 
    $ctrl.cancel = function () {

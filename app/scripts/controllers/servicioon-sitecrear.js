@@ -38,12 +38,10 @@ angular.module('yuberApp')
               
           servicio.create(nuevoservicio).then(function(result){
             
-            console.log(result);
             ctrl.openModal(nombre, tarifabase, precioporhora);
 
     	   	}, function(data) {
                           
-                console.log(data);
         	});
         }
     }
@@ -79,7 +77,7 @@ angular.module('yuberApp')
   };
   }]);
 
-angular.module('yuberApp').controller('ModalInstanceAgregarServicioOnSiteCtrl', function ($uibModalInstance, nombre, tarifabase, precioporhora) {
+angular.module('yuberApp').controller('ModalInstanceAgregarServicioOnSiteCtrl', function ($uibModalInstance, $state, nombre, tarifabase, precioporhora) {
   var $ctrl = this;
   $ctrl.nombre = nombre;
   $ctrl.tarifabase = tarifabase;
@@ -87,6 +85,7 @@ angular.module('yuberApp').controller('ModalInstanceAgregarServicioOnSiteCtrl', 
 
   $ctrl.ok = function () {
     $uibModalInstance.close();
+    $state.go('initial.dashboard.on-site.servicios.listar');
   };
 
    $ctrl.cancel = function () {

@@ -10,7 +10,7 @@
 angular.module('yuberApp')
   .factory('administrador', ['$http', '$q', function ($http, $q) {
 
-  	var URLserver = 'http://54.213.51.6:8080/YuberWEB/rest/';
+  	var URLserver = 'http://54.203.12.195:8080/YuberWEB/rest/';
 
     var administrador = {};
 

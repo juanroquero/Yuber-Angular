@@ -17,21 +17,17 @@ angular.module('yuberApp')
   	ctrl.filters = ['Por puntaje', 'Por cantidad de instancias'];
    
   	administrador.topClientesPorPuntajeTransporte().then(function(result){
-  		console.log(result);
       ctrl.puntaje = result.data;
 
   	}, function(data){
 
-  		console.log(data);
   	});
 
   	administrador.topClientesPorCantidadInstanciasTransporte().then(function(result){
-  		console.log(result);
   		ctrl.instancias = result.data;
 
   	}, function(data){
 
-  		console.log(data);
   	});
 
   	ctrl.seleccionarFiltro = function(filtro){

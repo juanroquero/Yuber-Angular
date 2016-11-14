@@ -17,21 +17,17 @@ angular.module('yuberApp')
   	ctrl.filters = ['Por puntaje', 'Por ganancia'];
    
   	administrador.topProveedoresPorPuntajeTransporte().then(function(result){
-  		console.log(result);
   		ctrl.puntaje = result.data;
 
   	}, function(data){
 
-  		console.log(data);
   	});
 
   	administrador.topProveedoresPorGananciaTransporte().then(function(result){
-  		console.log(result);
   		ctrl.ganancia = result.data;
 
   	}, function(data){
 
-  		console.log(data);
   	});
 
   	ctrl.seleccionarFiltro = function(filtro){

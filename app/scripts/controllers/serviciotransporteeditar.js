@@ -95,7 +95,7 @@ angular.module('yuberApp')
 
 }]);
 
-angular.module('yuberApp').controller('ModalInstanceEditarServicioTransporteCtrl', function ($uibModalInstance, nombre, tarifabase, precioporhora, precioporkm) {
+angular.module('yuberApp').controller('ModalInstanceEditarServicioTransporteCtrl', function ($uibModalInstance, $state, nombre, tarifabase, precioporhora, precioporkm) {
   var $ctrl = this;
   $ctrl.nombre = nombre;
   $ctrl.tarifabase = tarifabase;
@@ -104,6 +104,7 @@ angular.module('yuberApp').controller('ModalInstanceEditarServicioTransporteCtrl
 
   $ctrl.ok = function () {
     $uibModalInstance.close();
+    $state.go('initial.dashboard.transporte.servicios.listar');
   };
 
    $ctrl.cancel = function () {

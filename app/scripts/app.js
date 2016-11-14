@@ -17,10 +17,11 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
        
+
        $urlRouterProvider.otherwise('/login');
       
         $stateProvider
@@ -330,7 +331,6 @@ angular
     }
     ////PREVENIR IR AL LOGIN ESTANDO LOGUEADO////
     if (toState.name == 'initial.login' && auth.isAuthenticated()){
-        console.log(toState);
         if (auth.isAdministrador()){
           event.preventDefault();
           $state.transitionTo('initial.dashboard.administradores.listar');
@@ -347,7 +347,6 @@ angular
     }
     ////PREVENIR VER ADMINS SIN TENER PERMISO DE SUPERADMIN////
     if (toState.name.startsWith('initial.dashboard.administradores') && auth.isAuthenticated()){
-        console.log(toState);
         if (!auth.isAdministrador()){
           event.preventDefault();
            if (auth.isTransporte()){
@@ -361,7 +360,6 @@ angular
     }
     ////PREVENIR VER TRANSPORTE SIN TENER PERMISO////
     if (toState.name.startsWith('initial.dashboard.transporte') && auth.isAuthenticated()){
-        console.log(toState);
         if (!auth.isTransporte()){
           event.preventDefault();
            if (auth.isAdministrador()){
@@ -375,7 +373,6 @@ angular
     }
     ////PREVENIR VER ON-SITE SIN TENER PERMISO////
     if (toState.name.startsWith('initial.dashboard.on-site') && auth.isAuthenticated()){
-        console.log(toState);
         if (!auth.isTransporte()){
           event.preventDefault();
            if (auth.isAdministrador()){

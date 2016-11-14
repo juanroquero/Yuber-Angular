@@ -15,13 +15,11 @@ angular.module('yuberApp')
   ctrl.id = $stateParams.id;
 
   servicio.retrieve(ctrl.id).then(function(result){
-      console.log(result);
    		ctrl.nombre = result.data.servicioNombre;
    		ctrl.tarifabase = result.data.servicioTarifaBase;
    		ctrl.precioporhora = result.data.servicioPrecioHora;
 
 	},  function(data) {
-        console.log(data);
 	});
 
    ctrl.editar = function(id, nombre, tarifabase, precioporhora){
@@ -45,7 +43,6 @@ angular.module('yuberApp')
 			}
 
             servicio.edit(dataservicio).then(function(result){
-	            console.log(result);
 	            ctrl.openModal(nombre, tarifabase, precioporhora);
             
     	   }, function(data) {
@@ -87,15 +84,15 @@ angular.module('yuberApp')
 
 }]);
 
-angular.module('yuberApp').controller('ModalInstanceEditarServicioOnsiteCtrl', function ($uibModalInstance, nombre, tarifabase, precioporhora) {
+angular.module('yuberApp').controller('ModalInstanceEditarServicioOnsiteCtrl', function ($uibModalInstance, $state, nombre, tarifabase, precioporhora) {
   var $ctrl = this;
-  console.log(nombre);
   $ctrl.nombre = nombre;
   $ctrl.tarifabase = tarifabase;
   $ctrl.precioporhora = precioporhora;
 
   $ctrl.ok = function () {
     $uibModalInstance.close();
+    $state.go('initial.dashboard.on-site.servicios.listar');
   };
 
    $ctrl.cancel = function () {

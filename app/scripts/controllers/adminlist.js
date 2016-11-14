@@ -15,21 +15,9 @@ angular.module('yuberApp')
   	ctrl.loading = false;
 
   	administrador.list().then(function(result){
-	   		console.log(result);
 	   		ctrl.lista = result.data;
 	   	}, function(data) {
-        console.log(data);
     	})
-
-    ctrl.eliminarAdmin = function(email){
-    	
-    	/*administrador.delete(email).then(function(result){
-	   		console.log(result);
-	   	}, function(error) {
-        	console.log(error);
-    	})*/
-
-    }
 
     ctrl.openModal = function (nombre, email){
 
@@ -53,28 +41,22 @@ angular.module('yuberApp')
 
     modalInstance.result.then(function (email) {
     	ctrl.loading = true;
-    	console.log(email);
     	administrador.delete(email).then(function(result){
     		
     		administrador.list().then(function(result){
-	   		console.log(result);
 	   		ctrl.lista = result.data;
 	   		ctrl.loading = false;
 		   	}, function(data) {
-	        console.log(data);
 	        ctrl.loading = false;
 	    	})
 
 	   	}, function(error) {
 	   		administrador.list().then(function(result){
-	   		console.log(result);
 	   		ctrl.lista = result.data;
 	   		ctrl.loading = false;
 		   	}, function(data) {
-	        console.log(data);
 	        ctrl.loading = false;
 	    	})
-        	console.log(error);
     	})
 
     }, function () {

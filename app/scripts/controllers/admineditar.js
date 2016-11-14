@@ -21,7 +21,6 @@ angular.module('yuberApp')
   ctrl.email = $stateParams.email;
 
   administrador.retrieve(ctrl.email).then(function(result){
-      console.log(result);
    		ctrl.nombre = result.data.administradorNombre;
    		ctrl.password = result.data.administradorContraseña;
    		ctrl.listaVerticales = result.data.verticales;
@@ -30,7 +29,6 @@ angular.module('yuberApp')
       //verticales que quedan
        administrador.verticales().then(function(result){
               ctrl.verticales = result.data;
-              console.log(result);
          
               var tipoverticales = _.map(ctrl.listaVerticales, function(a){return a.verticalTipo})
               ctrl.verticales = _.reject(ctrl.verticales, function(a){
@@ -38,11 +36,9 @@ angular.module('yuberApp')
                   });
 
          }, function(data) {
-              console.log(data);
           });
 
 	},  function(data) {
-        console.log(data);
 	});
 
 
@@ -79,19 +75,16 @@ angular.module('yuberApp')
         }else{
 
             administrador.edit(nombre, email, password).then(function(result){
-            console.log(result);
 
             var tipoVerticalesPostEdit = _.map(ctrl.listaVerticales, function(a){return a.verticalTipo})
             var aEliminarVerticales = _.reject(ctrl.verticalesPreEdit, function(elem){
                                   return _.contains(tipoVerticalesPostEdit,elem.verticalTipo); 
                                 });
-            console.log(aEliminarVerticales);
 
             var tipoVerticalesPreEdit = _.map(ctrl.verticalesPreEdit, function(a){return a.verticalTipo})
             var aAgregarVerticales = _.reject(ctrl.listaVerticales, function(elem){
                                   return _.contains(tipoVerticalesPreEdit,elem.verticalTipo); 
                                 });
-            console.log(aAgregarVerticales);
 
             ctrl.addVerticalesAdmin(nombre, email, aAgregarVerticales);
             ctrl.removeVerticalesAdmin(nombre, email, aEliminarVerticales);
@@ -108,9 +101,7 @@ angular.module('yuberApp')
 
     angular.forEach(listaVerticales, function(value, key){         
         administrador.addVertical(email, value.verticalTipo).then(function(result){
-            console.log(result);
            }, function(data) {
-                console.log(data);
             });
         });
 
@@ -120,9 +111,7 @@ angular.module('yuberApp')
 
     angular.forEach(listaVerticales, function(value, key){         
         administrador.removeVertical(email, value.verticalTipo).then(function(result){
-            console.log(result);
            }, function(data) {
-                console.log(data);
             });
         });
 
@@ -159,13 +148,14 @@ angular.module('yuberApp')
 
 }]);
 
-angular.module('yuberApp').controller('ModalInstanceEditarAdminCtrl', function ($uibModalInstance, nombre, email) {
+angular.module('yuberApp').controller('ModalInstanceEditarAdminCtrl', function ($uibModalInstance, $state, nombre, email) {
   var $ctrl = this;
   $ctrl.nombre = nombre;
   $ctrl.email = email;
 
   $ctrl.ok = function () {
     $uibModalInstance.close();
+    $state.go('initial.dashboard.administradores.listar');  
   };
 
    $ctrl.cancel = function () {

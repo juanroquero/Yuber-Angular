@@ -24,7 +24,6 @@ angular.module('yuberApp')
 
    	var user = auth.getUserObj();
 
-   	console.log(user);
 
    	ctrl.sesion = (user !== undefined);
 
@@ -35,12 +34,10 @@ angular.module('yuberApp')
         	}
     
    	auth.logout(datausuario).then(function(result){
-   		console.log(result);
    		auth.removeCookies();
    		$rootScope.sesion = false;
    		$state.go('initial.login');
    	}, function(data){
-   		console.log(data);
    	})
     
     //localStorage.removeItem("hash");

@@ -39,7 +39,6 @@ angular.module('yuberApp')
               if(result.data){
                 var accessToken = "token prueba";
                 var userObj = datausuario
-                console.log(result);
                 auth.setAccessToken(accessToken);
                 auth.setUserObj(userObj);
                 $rootScope.sesion = true;
@@ -49,7 +48,6 @@ angular.module('yuberApp')
                 ////////////ANTES VER SI ES SUPERADMIN IR A ADMINISTRADOR, HACER LO DE ROOTSCOPE/////////////////////////
 
                 administrador.retrieve(datausuario.correo).then(function(admin){
-			      	console.log(admin);
 			   		ctrl.nombre = admin.data.administradorNombre;
 			   		ctrl.correo = admin.data.administradorCorreo;
 			   		ctrl.password = admin.data.administradorContraseña;
@@ -82,7 +80,6 @@ angular.module('yuberApp')
 
   
 		         }, function(data) {
-		              console.log(data);
 		          });
 
                 $state.go('initial.dashboard.on-site.servicios.listar')
@@ -97,7 +94,6 @@ angular.module('yuberApp')
 
     	   }, function(data) {
         
-                console.log(data);
         	});
         }
     }
@@ -107,36 +103,5 @@ angular.module('yuberApp')
         ctrl.isLoggedIn = function () {
             return (auth.getUserObj() != undefined) && (auth.getUserObj() != null);
         };
-
-
-        /*$scope.loginComun = function () {
-            console.log('login..');
-            var e = $scope.email;
-            var p = $scope.password;
-            loginRestFactory.loginComun(e, p).success(function (response) {
-                if ((response != undefined) && (response != null) && (response !== "")) {
-                    console.log('todo ok');
-                    var accessToken = "token prueba";
-                    var userObj = response;
-                    console.log(response);
-                    authFactory.setAccessToken(accessToken);
-                    authFactory.setFacebook(false);
-                    authFactory.setUserObj(userObj);
-                    localStorage.setItem('mensajes', JSON.stringify([]));
-                    alertify.success("Bienvenido a SapO " + userObj.nombre + "!");
-                    $scope.hash = $scope.hashcodel(userObj.email);
-                    localStorage.setItem("hash",$scope.hash);
-                    $location.path('/'+$scope.hash+'/home');
-
-                } else {
-                    alertify.error("Los datos no coinciden, Intentelo de nuevo por favor");
-                    $location.path('/');
-                }
-            }).error(function (response) {
-                alertify.error("Lo sentimos, se perdio la conexion con el servidor");
-                $location.path('/');
-            });
-        };
-*/
 
     }]);

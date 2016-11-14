@@ -12,7 +12,7 @@ angular.module('yuberApp')
 
 		var servicio = {};
 
-    var URLserver = 'http://54.213.51.6:8080/YuberWEB/rest/';
+    var URLserver = 'http://54.203.12.195:8080/YuberWEB/rest/';
 
 		servicio.create = function(dataservicio){
 

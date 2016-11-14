@@ -15,10 +15,8 @@ angular.module('yuberApp')
   	ctrl.loading = false;
 
   	servicio.list('Transporte').then(function(result){
-	   		console.log(result);
 	   		ctrl.lista = result.data;
 	   	}, function(data) {
-        console.log(data);
     	})
 
     ctrl.openModal = function (id, nombre, tarifabase, precioporhora, precioporkm){
@@ -55,16 +53,13 @@ angular.module('yuberApp')
     	servicio.delete(id).then(function(result){
     		
     		servicio.list('Transporte').then(function(result){
-	   		console.log(result);
 	   		ctrl.lista = result.data;
 	   		ctrl.loading = false;
 		   	}, function(data) {
-	        console.log(data);
 	        ctrl.loading = false;
 	    	})
 
 	   	}, function(error) {
-	   		console.log(error);
     	})
 
     }, function () {
