@@ -18,6 +18,7 @@ angular.module('yuberApp')
    
   	administrador.topClientesPorPuntajeOnSite().then(function(result){
   		ctrl.puntaje = result;
+      console.log(result);
 
   	}, function(data){
 
@@ -25,6 +26,7 @@ angular.module('yuberApp')
 
   	administrador.topClientesPorCantidadInstanciasOnSite().then(function(result){
   		ctrl.instancias = result;
+      console.log(result);
 
   	}, function(data){
 
@@ -34,10 +36,14 @@ angular.module('yuberApp')
   			if (filtro === "Por puntaje"){
   				ctrl.loading = true;
   				ctrl.lista = angular.copy(ctrl.puntaje);
+          ctrl.series = _.map(ctrl.lista, function(elem){return elem.cliente.usuarioApellido + ", " + elem.cliente.usuarioNombre});
+          ctrl.data = _.map(ctrl.lista, function(elem){return [elem.cliente.usuarioPromedioPuntaje]});
   				ctrl.loading = false;
   			}else if(filtro === "Por cantidad de instancias"){
   				ctrl.loading = true;
   				ctrl.lista = angular.copy(ctrl.instancias);
+          ctrl.series = _.map(ctrl.lista, function(elem){return elem.cliente.usuarioApellido + ", " + elem.cliente.usuarioNombre});
+          ctrl.data = _.map(ctrl.lista, function(elem){return [elem.cantServicios]});
   				ctrl.loading = false;
   			}
   	}

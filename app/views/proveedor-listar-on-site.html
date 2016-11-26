@@ -17,7 +17,7 @@
           <th>Ganancia</th>
         </tr>
       </thead>
-      <tbody ng-if="!proveedorListarTransporteCtrl.loading">
+      <tbody ng-if="!proveedorListarOnSiteCtrl.loading">
         <tr ng-repeat="elem in proveedorListarOnSiteCtrl.lista">
           <td width="25%">{{elem.usuarioCorreo}}</td>
           <td width="25%">{{elem.usuarioNombre}}</td>
@@ -29,3 +29,7 @@
       </tbody>
     </table>
   </div>
+
+  <canvas ng-if ="!proveedorListarOnSiteCtrl.loading" id="bar" class="chart chart-bar"
+  chart-data="proveedorListarOnSiteCtrl.data" chart-labels="proveedorListarOnSiteCtrl.labels" chart-series="proveedorListarOnSiteCtrl.series" style="margin-top:5em;">
+</canvas>

@@ -18,6 +18,7 @@ angular
     'ngTouch',
     'ui.router',
     'ui.bootstrap',
+    'chart.js',
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
        
@@ -131,6 +132,30 @@ angular
             },
         })
 
+        .state('initial.dashboard.on-site.servicios.gananciamensual', {
+            url: '/ganancia-mensual',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.on-site.servicios': {
+                templateUrl: 'views/gananciamensual-onsite.html',
+                  controller:  'GananciamensualOnsiteCtrl',
+                  controllerAs: 'gananciamensualOnsiteCtrl' 
+              },
+            },
+        })
+
+        .state('initial.dashboard.on-site.servicios.usuariosactivos', {
+            url: '/usuarios-activos',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.on-site.servicios': {
+                templateUrl: 'views/usuariosactivos-onsite.html',
+                  controller:  'UsuariosactivosOnsiteCtrl',
+                  controllerAs: 'usuariosactivosOnsiteCtrl' 
+              },
+            },
+        })
+
         //--------------------PROVEEDORES-----------------------------
 
         .state('initial.dashboard.on-site.proveedores', {
@@ -221,6 +246,31 @@ angular
               },
             },
         })
+
+        .state('initial.dashboard.transporte.servicios.gananciamensual', {
+            url: '/ganancia-mensual',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.transporte.servicios': {
+                templateUrl: 'views/gananciamensual-transporte.html',
+                  controller:  'GananciamensualTransporteCtrl',
+                  controllerAs: 'gananciamensualTransporteCtrl' 
+              },
+            },
+        })
+
+        .state('initial.dashboard.transporte.servicios.usuariosactivos', {
+            url: '/usuarios-activos',
+            authenticate: true,
+            views:{
+              'body@initial.dashboard.transporte.servicios': {
+                templateUrl: 'views/usuariosactivos-transporte.html',
+                  controller:  'UsuariosactivosTransporteCtrl',
+                  controllerAs: 'usuariosactivosTransporteCtrl' 
+              },
+            },
+        })
+
 
         //--------------------PROVEEDORES-----------------------------
 
@@ -334,12 +384,15 @@ angular
         if (auth.isAdministrador()){
           event.preventDefault();
           $state.transitionTo('initial.dashboard.administradores.listar');
+          $rootScope.administrador = true;
         } else if ($rootScope.transporte){
           event.preventDefault();
           $state.transitionTo('initial.dashboard.transporte.servicios.listar');
+          $rootScope.transporte = true;
         } else if (auth.isOnSite()){
           event.preventDefault();
           $state.transitionTo('initial.dashboard.on-site.servicios.listar');
+          $rootScope.onsite = true;
         } else {
           event.preventDefault();
           $state.transitionTo('initial.provicional');
@@ -351,12 +404,15 @@ angular
           event.preventDefault();
            if (auth.isTransporte()){
             $state.transitionTo('initial.dashboard.transporte.servicios.listar');
+            $rootScope.transporte = true;
           } else if (auth.isOnSite()){
             $state.transitionTo('initial.dashboard.on-site.servicios.listar');
+            $rootScope.onsite = true;
           } else {
             $state.transitionTo('initial.provicional');
           }
         }
+        $rootScope.administrador = true;
     }
     ////PREVENIR VER TRANSPORTE SIN TENER PERMISO////
     if (toState.name.startsWith('initial.dashboard.transporte') && auth.isAuthenticated()){
@@ -364,11 +420,14 @@ angular
           event.preventDefault();
            if (auth.isAdministrador()){
             $state.transitionTo('initial.dashboard.administradores.listar');
+            $rootScope.administrador = true;
           } else if (auth.isOnSite()){
             $state.transitionTo('initial.dashboard.on-site.servicios.listar');
+            $rootScope.onsite = true;
           } else {
             $state.transitionTo('initial.provicional');
           }
+          $rootScope.transporte = true;
       }
     }
     ////PREVENIR VER ON-SITE SIN TENER PERMISO////
@@ -377,12 +436,15 @@ angular
           event.preventDefault();
            if (auth.isAdministrador()){
             $state.transitionTo('initial.dashboard.administradores.listar');
+            $rootScope.administrador = true;
           } else if (auth.isTransporte()){
             $state.transitionTo('initial.dashboard.transporte.servicios.listar');
+            $rootScope.transporte = true;
           } else {
             $state.transitionTo('initial.provicional');
           }
       }
+      $rootScope.onsite = true;
     }
   });
 });

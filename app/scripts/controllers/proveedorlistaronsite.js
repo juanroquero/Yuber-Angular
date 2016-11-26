@@ -34,10 +34,14 @@ angular.module('yuberApp')
   			if (filtro === "Por puntaje"){
   				ctrl.loading = true;
   				ctrl.lista = angular.copy(ctrl.puntaje);
+          ctrl.series = _.map(ctrl.lista, function(elem){return elem.usuarioApellido + ", " + elem.usuarioNombre});
+          ctrl.data = _.map(ctrl.lista, function(elem){return [elem.usuarioPromedioPuntaje]});
   				ctrl.loading = false;
   			}else if (filtro == 'Por ganancia'){
   				ctrl.loading = true;
   				ctrl.lista = angular.copy(ctrl.ganancia);
+          ctrl.series = _.map(ctrl.lista, function(elem){return elem.usuarioApellido + ", " + elem.usuarioNombre});
+          ctrl.data = _.map(ctrl.lista, function(elem){return [elem.gananciaTotal]});
   				ctrl.loading = false;
   			}
   	}

@@ -49,8 +49,6 @@ angular.module('yuberApp')
 
   	}
 
-  	//////////////////////////CAMBIAR SUPERADMIN POR MAIL ACTUAL DE LA SESION///////////////////////////////
-
   	administrador.addVertical = function(email, nombreVertical){
 
   		return $http.get(URLserver + 'Admin/AsignarVertical/SuperAdmin@yuber.com,' + email + ',' + nombreVertical);
@@ -67,100 +65,56 @@ angular.module('yuberApp')
 
     administrador.topClientesPorCantidadInstanciasTransporte = function(limit){
 
-      /*var list = [{clienteEmail:'juan@juan', clienteNombre: 'Juan', clientePuntaje:'3.3', clienteInstancias:'50'}, 
-                  {clienteEmail:'clientun@client', clienteNombre: 'Giuseppe', clientePuntaje:'4.3', clienteInstancias:'10'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
-
       return $http.get(URLserver + 'Admin/TopClientesPorCantServicios/' + '100,Transporte');
     }
 
     administrador.topClientesPorCantidadInstanciasOnSite = function(limit){
 
-      /*var list = [{clienteEmail:'juan@juan', clienteNombre: 'Juan', clientePuntaje:'3.3', clienteInstancias:'50'}, 
-                  {clienteEmail:'clientun@client', clienteNombre: 'Giuseppe', clientePuntaje:'4.3', clienteInstancias:'10'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
-
-      return $http.get(URLserver + 'Admin/TopClientesCantServicios/' + '100,On-Site');
+      return $http.get(URLserver + 'Admin/TopClientesPorCantServicios/' + '100,On-Site');
     }
 
     administrador.topClientesPorPuntajeTransporte = function(limit){
-
-     /* var list = [{clienteEmail:'clientun@client', clienteNombre: 'Giuseppe', clientePuntaje:'4.3', clienteInstancias:'10'},
-                    {clienteEmail:'juan@juan', clienteNombre: 'Juan', clientePuntaje:'3.3', clienteInstancias:'50'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
 
       return $http.get(URLserver + 'Admin/TopClientesPorPuntaje/' + '100,Transporte');
     }
 
     administrador.topClientesPorPuntajeOnSite = function(limit){
 
-      /*var list = [{clienteEmail:'clientun@client', clienteNombre: 'Giuseppe', clientePuntaje:'4.3', clienteInstancias:'10'},
-                    {clienteEmail:'juan@juan', clienteNombre: 'Juan', clientePuntaje:'3.3', clienteInstancias:'50'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
-
       return $http.get(URLserver + 'Admin/TopClientesPorPuntaje/' + '100,On-Site');
+    }
+
+    administrador.usuariosActivos = function(vertical){
+
+      return $http.get(URLserver + 'Admin/ObtenerClientesActivos/' + vertical);
     }
 
     //---------------------PROVEEDORES-----------------------------------
 
     administrador.topProveedoresPorPuntajeTransporte = function(limit){
-
-      /*var list = [{proveedorEmail:'pobreza@pobre', proveedorNombre: 'Abdul', proveedorPuntaje:'4.3', proveedorGanancia:'100'},
-                    {proveedorEmail:'juan@juan', proveedorNombre: 'Juan', proveedorPuntaje:'3.3', proveedorGanancia:'500'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
       
       return $http.get(URLserver + 'Admin/TopProveedoresPorPuntajes/' + '100,' + 'Transporte');
     }
 
     administrador.topProveedoresPorPuntajeOnSite = function(limit){
 
-     /* var list = [{proveedorEmail:'pobreza@pobre', proveedorNombre: 'Abdul', proveedorPuntaje:'4.3', proveedorGanancia:'100'},
-                    {proveedorEmail:'juan@juan', proveedorNombre: 'Juan', proveedorPuntaje:'3.3', proveedorGanancia:'500'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
-
       return $http.get(URLserver + 'Admin/TopProveedoresPorPuntajes/' + '100,' + 'On-Site');
     }
 
     administrador.topProveedoresPorGananciaTransporte = function(limit){
-
-      /*var list = [{proveedorEmail:'juan@juan', proveedorNombre: 'Juan', proveedorPuntaje:'3.3', proveedorGanancia:'500'},
-                   {proveedorEmail:'pobreza@pobre', proveedorNombre: 'Abdul', proveedorPuntaje:'4.3', proveedorGanancia:'100'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
 
       return $http.get(URLserver + 'Admin/TopProveedoresPorGanancia/' + '100,' + 'Transporte');
     }
 
     administrador.topProveedoresPorGananciaOnSite = function(limit){
 
-     /*var list = [{proveedorEmail:'juan@juan', proveedorNombre: 'Juan', proveedorPuntaje:'3.3', proveedorGanancia:'500'},
-                   {proveedorEmail:'pobreza@pobre', proveedorNombre: 'Abdul', proveedorPuntaje:'4.3', proveedorGanancia:'100'}]
-      var defer;
-      defer = $q.defer();
-      defer.resolve(list);
-      return defer.promise;*/
-
       return $http.get(URLserver + 'Admin/TopProveedoresPorGanancia/' + '100,' + 'On-Site');
+    }
+
+    //---------------------VERTICALES-----------------------------------
+
+    administrador.gananciaMensual = function(vertical, mes){
+
+      return $http.get(URLserver + 'Admin/ObtenerGananciaMensual/' + vertical + ',' + mes);
     }
 
   	return administrador;

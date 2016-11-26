@@ -29,3 +29,7 @@
       </tbody>
     </table>
   </div>
+
+  <canvas ng-if ="!clienteListarTransporteCtrl.loading" id="bar" class="chart chart-bar"
+  chart-data="clienteListarTransporteCtrl.data" chart-labels="clienteListarTransporteCtrl.labels" chart-series="clienteListarTransporteCtrl.series" chart-options="{scaleBeginAtZero:true}" style="margin-top:5em;">
+</canvas>

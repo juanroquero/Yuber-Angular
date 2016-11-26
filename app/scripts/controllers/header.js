@@ -14,7 +14,7 @@ angular.module('yuberApp')
 
   	var user = auth.getUserObj();
 
-   	$rootScope.superAdmin = (user !== undefined)
+   	$rootScope.administrador = (user !== undefined)
 
    	$rootScope.transporte = (user !== undefined)
 
@@ -22,26 +22,26 @@ angular.module('yuberApp')
 
    ctrl.logout = function () {
 
-   	var user = auth.getUserObj();
+     	var user = auth.getUserObj();
 
 
-   	ctrl.sesion = (user !== undefined);
+     	ctrl.sesion = (user !== undefined);
 
-   	var datausuario = {
-        						"correo": user.email,
-        						"password": "basura",
-        						"deviceId":"050505050"
-        	}
-    
-   	auth.logout(datausuario).then(function(result){
-   		auth.removeCookies();
-   		$rootScope.sesion = false;
-   		$state.go('initial.login');
-   	}, function(data){
-   	})
-    
-    //localStorage.removeItem("hash");
-    //$location.path('/');
+     	var datausuario = {
+          						"correo": user.email,
+          						"password": "basura",
+          						"deviceId":"050505050"
+          	}
+      
+     	auth.logout(datausuario).then(function(result){
+     		auth.removeCookies();
+     		$rootScope.sesion = false;
+     		$state.go('initial.login');
+     	}, function(data){
+     	})
+      
+      //localStorage.removeItem("hash");
+      //$location.path('/');
 
 	};
 

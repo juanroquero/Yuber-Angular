@@ -29,3 +29,7 @@
       </tbody>
     </table>
   </div>
+
+  <canvas ng-if ="!proveedorListarTransporteCtrl.loading" id="bar" class="chart chart-bar"
+  chart-data="proveedorListarTransporteCtrl.data" chart-labels="proveedorListarTransporteCtrl.labels" chart-series="proveedorListarTransporteCtrl.series" style="margin-top:5em;">
+</canvas>

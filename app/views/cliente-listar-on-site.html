@@ -29,3 +29,7 @@
       </tbody>
     </table>
   </div>
+
+  <canvas ng-if ="!clienteListarOnSiteCtrl.loading" id="bar" class="chart chart-bar"
+  chart-data="clienteListarOnSiteCtrl.data" chart-labels="clienteListarOnSiteCtrl.labels" chart-series="clienteListarOnSiteCtrl.series" chart-options="{scaleBeginAtZero:true}" style="margin-top:5em;">
+</canvas>

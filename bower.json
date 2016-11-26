@@ -14,7 +14,9 @@
     "restangular": "^1.5.2",
     "angular-bootstrap": "^2.2.0",
     "underscore": "^1.8.3",
-    "angular-stripe": "^4.2.12"
+    "angular-stripe": "^4.2.12",
+    "chart.js": "^2.4.0",
+    "angular-chart.js": "^1.0.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

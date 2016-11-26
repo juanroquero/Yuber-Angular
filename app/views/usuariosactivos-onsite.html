@@ -1,0 +1,24 @@
+<h1 class="page-header">Usuarios Activos</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Ciudad</th>
+          <th>Puntaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="elem in usuariosactivosOnsiteCtrl.usuarios">
+          <td width="25%">{{elem.usuarioCorreo}}</td>
+          <td width="25%">{{elem.usuarioNombre}}</td>
+          <td width="25%">{{elem.usuarioApellido}}</td>
+          <td width="10%">{{elem.usuarioCiudad}}</td>
+          <td width="10%">{{elem.usuarioPromedioPuntaje}}</td>
+        </tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>
