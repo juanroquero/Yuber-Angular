@@ -18,6 +18,7 @@ angular.module('yuberApp')
    
   	administrador.topClientesPorPuntajeTransporte().then(function(result){
       ctrl.puntaje = result.data;
+      console.log(ctrl.puntaje);
 
   	}, function(data){
 
@@ -25,6 +26,7 @@ angular.module('yuberApp')
 
   	administrador.topClientesPorCantidadInstanciasTransporte().then(function(result){
   		ctrl.instancias = result.data;
+      console.log(ctrl.instancias);
 
   	}, function(data){
 

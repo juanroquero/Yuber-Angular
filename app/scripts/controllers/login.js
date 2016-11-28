@@ -14,14 +14,6 @@ angular.module('yuberApp')
         //     $location.path("/"+localStorage.getItem("hash")+"/"+url);
         // };
 
-        var lista = [1,6,8,35,2,8,9,5];
-
-        lista.sort(function(a,b){return a-b});
-
-        var print = _.sortBy(lista, function(num){return num});
-
-        console.log(lista);
-
         var ctrl = this;
         ctrl.error = false;
 
